@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Zadataka</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📋 Lista Zadataka </h1>
+            <p class="subtitle">Jednostavna Organizacija Zadataka</p>
+        </header>
+
+        <div class="add-task-section">
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="taskInput" 
+                    placeholder="Dodajte novi zadatak..." 
+                    class="task-input"
+                >
+                <button id="addTaskBtn" class="btn btn-primary">
+                    <span>Dodaj</span>
+                </button>
+            </div>
+            <div class="description-group">
+                <label for="taskDescriptionInput" class="description-label">
+                    Opis zadatka <span class="required">*</span>
+                </label>
+                <textarea 
+                    id="taskDescriptionInput" 
+                    placeholder="Unesite opis zadatka..." 
+                    class="task-description-input"
+                    rows="3"
+                    required
+                ></textarea>
+            </div>
+        </div>
+
+        <div class="filter-section">
+            <button class="filter-btn active" data-filter="all">Svi</button>
+            <button class="filter-btn" data-filter="active">Aktivni</button>
+            <button class="filter-btn" data-filter="completed">Završeni</button>
+            <button id="deleteAllBtn" class="btn btn-danger" title="Obriši sve zadatke">
+                🗑️ Obriši sve
+            </button>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-card">
+                <span class="stat-number" id="totalTasks">0</span>
+                <span class="stat-label">Ukupno</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="activeTasks">0</span>
+                <span class="stat-label">Aktivni</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-number" id="completedTasks">0</span>
+                <span class="stat-label">Završeni</span>
+            </div>
+        </div>
+
+        <div class="tasks-container">
+            <ul id="tasksList" class="tasks-list">
+                <!-- Tasks will be added here dynamically -->
+            </ul>
+        </div>
+
+        <div class="empty-state" id="emptyState">
+            <div class="empty-icon">📝</div>
+            <p>Nema zadataka. Dodajte novi zadatak da počnete!</p>
+        </div>
+    </div>
+
+    <!-- Modal za potvrdu brisanja -->
+    <div class="modal" id="deleteConfirmModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>⚠️ Potvrda brisanja</h2>
+                <button class="modal-close" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Da li ste sigurni da želite da obrišete <strong id="deleteCount">sve</strong> zadatke?</p>
+                <p class="warning-text">Ova akcija se ne može poništiti!</p>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="cancelDelete">Otkaži</button>
+                    <button class="btn btn-danger" id="confirmDelete">Obriši</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal za Opis zadatka -->
+    <div class="modal" id="descriptionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📝 Opis zadatka</h2>
+                <button class="modal-close" id="closeDescriptionModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="descriptionInput">Dodajte opis zadatka:</label>
+                    <textarea 
+                        id="descriptionInput" 
+                        class="description-input" 
+                        placeholder="Unesite detaljan opis zadatka..."
+                        rows="6"
+                    ></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" id="cancelDescription">Otkaži</button>
+                    <button class="btn btn-primary" id="saveDescription">Sačuvaj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
